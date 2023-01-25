@@ -1,0 +1,57 @@
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
+class Stack:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def Push(self, val):
+        newnode = Node(val)
+        newnode.next = self.head
+        self.head = newnode
+        self.size += 1
+
+    def Pop(self):
+        if self.head is None:
+            print("Stack is empty")
+        else:
+            temp = self.head
+            self.head = self.head.next
+            temp.next = None
+            self.size -= 1
+        return self.head.val
+
+    def Peek(self):
+        if self.head is None:
+            print("Empty")
+        else:
+            return self.head.val
+
+    def DisplayStack(self):
+        ptr = self.head
+        while ptr is not None:
+            print(ptr.val)
+            ptr = ptr.next
+
+    def Size(self):
+        return self.size
+
+
+MyStack = Stack()
+while True:
+    choice = input("Please choose, 1 to push element, 2 to pop element, 3 to view top element, 4 to view size: ")
+    if choice == "1":
+        val = input("Please type the value: ")
+        MyStack.Push(val)
+    elif choice == "2":
+        print("Value popped is: " + str(MyStack.Pop()))
+    elif choice == "3":
+        print("Top element on stack is: " + str(MyStack.Peek()))
+    elif choice == "4":
+        print("Size of stack is: " + str(MyStack.Size()))
+    else:
+        print("Invalid choice, try again")
